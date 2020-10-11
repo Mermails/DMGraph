@@ -87,6 +87,6 @@ class Euclidien{
         return a*a;
     }
     double Distance(double x1, double y1, double x2, double y2) {
-        return Math.sqrt(sqr(y2 - y1) + sqr(x2 - x1));
+        return Math.round(Math.sqrt(sqr(y2 - y1) + sqr(x2 - x1)));//arondie à l'entier le plus proche 
     } 
 }
