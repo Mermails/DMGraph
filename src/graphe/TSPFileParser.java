@@ -28,31 +28,35 @@ Coordinate[] xy = new Coordinate[counts];
 
 
 int i = 0;
-
-while(i<counts){ // picking exactly the required number of items.
-
+boolean estFini = false;
+while(!estFini){ // picking exactly the required number of items.
+    
             String line = s.nextLine();
-            String[] vals = line.split("[ ]{1,}");
+            if(line.equals("EOF")){
+              estFini = true;
+            }else{
+                 String[] vals = line.split("[ ]{1,}");
 
             
             double x = Double.parseDouble(vals[1]);
-            System.out.println("x : " + x);
+            //System.out.println("x[" +i+"] : " + x);
             double y = Double.parseDouble(vals[2]);
-            System.out.println("y : " + y);
+            //System.out.println("y[" +i+"] : " + y);
 
 
             Coordinate c =  new Coordinate(x,y);
-//          System.out.println(c);
+          //System.out.println(i + " : " +c);
             xy[i++] = c;
-            
-            
+            }
+           
         }
 
 Euclidien e = new Euclidien();
-for( i = 0;i<xy.length -1;i++)
-        System.out.println("for index "+i+") "+xy[i]);
-        System.out.println("Distance euclidienne avec +1 :  " + e.Distance(xy[i].getX(), xy[i].getY(), xy[i+1].getX(), xy[i+1].getY()));
+for( i = 0;i<xy.length-1;i++){
+        System.out.println("for index "+i+") "+xy[i] + " à : " + xy[i+1]);
+        System.out.println("Distance euclidienne avec +1 pour ["+ i + " à ["+ i +"] :  " + e.Distance(xy[i].getX(), xy[i].getY(), xy[i+1].getX(), xy[i+1].getY()));
     }
+}
 }
  class Coordinate {
     double x;
