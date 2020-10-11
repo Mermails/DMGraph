@@ -6,8 +6,10 @@ class SO{
         System.out.println("Start");
 
 
-//Read thing
+List<String> fichiers = new ArrayList<String>(List.of("a280","berlin52","ch130","ch150","eil51","eil76","eil101","kroC100","pcb442","pr76","pr1002","pr2392"));
+
 File f = new File("C:\\Users\\alang\\Documents\\NetBeansProjects\\Graphe\\src\\graphe\\a280.tsp");
+//System.out.println("ArrayList : " + fichiers); 
 
 Scanner s = new Scanner(f);
 
