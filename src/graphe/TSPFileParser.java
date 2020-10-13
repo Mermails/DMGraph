@@ -1,10 +1,9 @@
+package graphe;
 import java.util.*;
 import java.io.*;
 
 class SO{
     public static void main(String...a)throws Exception{
-        System.out.println("Start");
-
 
 List<String> fichiers = new ArrayList<String>(List.of("a280","berlin52","ch130","ch150","eil51","eil76","eil101","kroC100","pcb442","pr76","pr1002","pr2392"));
 
@@ -53,10 +52,27 @@ while(!estFini){ // picking exactly the required number of items.
            
         }
 
+int largeur = i;
+int longueur = i;
+int[][] grapheComplet;
+grapheComplet = new int[largeur][longueur];
 Euclidien e = new Euclidien();
+
+ for(int it = 0; it< 5; it++ ){
+            for(int j = 0; j<5; j++){
+                if(it==j){
+                    grapheComplet[it][j] = 999999999;
+                }else{
+                    grapheComplet[it][j] = (int) e.Distance(xy[it].getX(), xy[it].getY(), xy[j].getX(), xy[j].getY());
+                }
+                System.out.printf("%12d", grapheComplet[it][j]); 
+            }
+            System.out.println();
+        }
+
 for( i = 0;i<xy.length-1;i++){
-        System.out.println("for index "+i+") "+xy[i] + " à : " + xy[i+1]);
-        System.out.println("Distance euclidienne avec +1 pour ["+ i + " à ["+ i +"] :  " + e.Distance(xy[i].getX(), xy[i].getY(), xy[i+1].getX(), xy[i+1].getY()));
+        //System.out.println("for index "+i+") "+xy[i] + " à : " + xy[i+1]);
+        //System.out.println("Distance euclidienne avec +1 pour ["+ i + " à ["+ i +"] :  " + e.Distance(xy[i].getX(), xy[i].getY(), xy[i+1].getX(), xy[i+1].getY()));
     }
 }
 }
