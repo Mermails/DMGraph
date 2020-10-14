@@ -1,25 +1,43 @@
 package graphe;
 import java.util.*;
 import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 class SO{
     public static void main(String...a)throws Exception{
 
 List<String> fichiers = new ArrayList<String>(List.of("a280","berlin52","ch130","ch150","eil51","eil76","eil101","kroC100","pcb442","pr76","pr1002","pr2392"));
 
-File f = new File("C:\\Users\\alang\\Documents\\NetBeansProjects\\Graphe\\src\\graphe\\a280.tsp");
+for(String fichier : fichiers){
+        System.out.println(fichier);
+        
+    
+File f = new File("C:\\Users\\alang\\Documents\\NetBeansProjects\\Graphe\\src\\graphe\\"+fichier+".tsp");
 //System.out.println("ArrayList : " + fichiers); 
 
 Scanner s = new Scanner(f);
 
 int counts = 0;
-
-s.nextLine();//skip 1
-s.nextLine();//skip 2
-s.nextLine();//skip 3
-counts = Integer.parseInt(s.nextLine().split(": ")[1]);//use 4th
-s.nextLine();//skip 5
-s.nextLine();//skip 6
+String ligne = s.nextLine();
+Pattern pDim = Pattern.compile("(.*)?DIMENSION(.*)?:.*");
+while(!(pDim.matcher(ligne)).find()){
+    ligne = s.nextLine();
+}
+System.out.println(ligne);
+if(ligne.contains("DIMENSION: ")){
+    System.out.println("ok");
+    counts = Integer.parseInt(ligne.split("DIMENSION: ")[1]);//use 4th
+}else{
+    System.out.println("ko");
+    counts = Integer.parseInt(ligne.split("DIMENSION : ")[1]);//use 4th
+}
+Pattern pDeb = Pattern.compile("(( )*)?1 [0-9a-zA-Z+]*((.?[0-9a-zA-Z]*)?|(.?[0-9a-zA-Z]*\\+.?[0-9a-zA-Z]*)?)? [0-9a-zA-Z]*((.?[0-9a-zA-Z]*)?|.?[0-9a-zA-Z]*\\+.?[0-9a-zA-Z]*)?(( )*)?");
+while(!(pDeb.matcher(ligne)).find()){
+    System.out.println(ligne);
+    ligne = s.nextLine();
+}
+System.out.println(ligne);
 System.out.println(counts+" : counts");
 
 
@@ -30,10 +48,9 @@ Coordinate[] xy = new Coordinate[counts];
 
 int i = 0;
 boolean estFini = false;
-while(!estFini){ // picking exactly the required number of items.
-    
+while(s.hasNextLine() && !estFini){ // picking exactly the required number of items.
             String line = s.nextLine();
-            if(line.equals("EOF")){
+            if(line.equals("EOF") || line.equals(" ")){
               estFini = true;
             }else{
                  String[] vals = line.split("[ ]{1,}");
@@ -75,6 +92,7 @@ for( i = 0;i<xy.length-1;i++){
         //System.out.println("Distance euclidienne avec +1 pour ["+ i + " à ["+ i +"] :  " + e.Distance(xy[i].getX(), xy[i].getY(), xy[i+1].getX(), xy[i+1].getY()));
     }
 }
+    }
 }
  class Coordinate {
     double x;
