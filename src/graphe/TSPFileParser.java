@@ -126,3 +126,35 @@ class Euclidien{
         return Math.round(Math.sqrt(sqr(y2 - y1) + sqr(x2 - x1)));//arondie à l'entier le plus proche 
     } 
 }
+
+class Cycle{
+    List liste = new ArrayList<Coordinate>();
+    public Cycle(List liste){
+        this.liste = liste;
+    }
+}
+class Matrice{
+    double donnee[][];
+    public Matrice(double donnee[][]){
+        this.donnee = donnee;
+}
+}
+class Graphe{
+    void H2(Graphe graphe, Coordinate sommet1, Coordinate sommet2){
+        ArrayList solution = new ArrayList<Coordinate>();
+        solution.add(sommet1);
+        solution.add(sommet2);
+        List<Coordinate> C = new ArrayList<Coordinate>();
+        solution.add(sommet1);
+        solution.add(sommet2);
+        solution.add(sommet1);
+        Cycle cycle = new Cycle(C);
+        while(solution.isEmpty()){
+           int coutMini = +99999; 
+           ArrayList solution_tmp_optimal = null;
+           sommet1 = null;
+           sommet2 = null;
+        }
+        
+    }
+}
